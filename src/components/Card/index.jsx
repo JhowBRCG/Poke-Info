@@ -1,14 +1,16 @@
 import { styled } from "styled-components";
 import bgCard from "../../assets/img/bg-card.png";
 
-const Card = ({ name, image, id }) => {
+const Card = ({ name, image, types }) => {
+  const typesFilter = types.map((type, index) => <p key={index}>{type}</p>);
+
   return (
     <StyledCard>
       <Name>{name}</Name>
       <ImageContainer>
         <img src={image} alt={name} />
       </ImageContainer>
-      <Footer>#{id}</Footer>
+      <Footer>{typesFilter}</Footer>
     </StyledCard>
   );
 };
@@ -52,15 +54,24 @@ const ImageContainer = styled.div`
   }
 `;
 
-const Footer = styled.div`
+const Footer = styled.footer`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   margin-top: 0.4rem;
   width: 100%;
   height: 30%;
-  text-align: center;
-  line-height: 93.21px;
   background: ${({ theme }) => theme.colors.primaryColorLight};
   color: ${({ theme }) => theme.colors.primaryColor};
   font-size: 2rem;
+
+  > p {
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: ${({ theme }) => theme.radius.default};
+    border: 2px solid ${({ theme }) => theme.colors.primaryColor};
+  }
 `;
 
 export { Card };

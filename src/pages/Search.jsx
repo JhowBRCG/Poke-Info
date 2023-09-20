@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Loading } from "../components/Loading";
 import { BackArrowButton } from "../components/BackArrowButton";
 
-const getSearchedPokemons = async (pokemonName) => {
+const getPokemon = async (pokemonName) => {
   const response = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
   );
@@ -24,7 +24,7 @@ const Search = () => {
   const query = searchParams.get("q");
 
   const pokemonSearch = async (pokemonName) => {
-    const data = await getSearchedPokemons(pokemonName);
+    const data = await getPokemon(pokemonName);
     setPokemon(data);
     setIsLoading(false);
   };
@@ -40,16 +40,20 @@ const Search = () => {
       <Header />
       <BackArrowButton />
       <Pokedex>
-        {pokemon.length <= 0 && (
-          <p style={{ textAlign: "center" }}>Pokemon not found</p>
-        )}
+        {/* {query !== pokemon.name && (
+          <p style={{ textAlign: "center", marginBottom: "2rem" }}>
+            Pokemon not found
+          </p>
+        )} */}
         <Cards>
-          {!isloading && (
+          {!isloading ? (
             <Card
               name={pokemon.name}
-              id={pokemon.id}
               image={pokemon.sprites.front_default}
+              types={pokemon.types.map((pokemon) => pokemon.type.name)}
             />
+          ) : (
+            <p>Loading...</p>
           )}
         </Cards>
       </Pokedex>

@@ -4,14 +4,9 @@ import { Pokedex } from "../components/Pokedex";
 import { Card } from "../components/Card";
 import { LoadMore } from "../components/LoadMore";
 import { Footer } from "../components/Footer";
+import { Link } from "react-router-dom";
+import { getPokemons } from "../services/getPokemons";
 import styled from "styled-components";
-
-const getPokemons = async (limit) => {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
-  );
-  return await response.json();
-};
 
 const getPokemonData = async (url) => {
   const response = await fetch(url);
@@ -37,28 +32,29 @@ const Home = () => {
   }, [limit]);
 
   return (
-    <>
+    <main>
       <Header />
       <Pokedex>
-        {pokemons.length <= 0 && (
+        {pokemons.length === 0 && (
           <p style={{ textAlign: "center" }}>Loading...</p>
         )}
         <Cards>
           {pokemons.map((data) => {
             return (
-              <Card
-                key={data.id}
-                name={data.name}
-                image={data.sprites.front_default}
-                id={data.id}
-              />
+              <Link to={`/details/${data.name}`} key={data.id}>
+                <Card
+                  name={data.name}
+                  image={data.sprites.front_default}
+                  types={data.types.map((pokemon) => pokemon.type.name)}
+                />
+              </Link>
             );
           })}
         </Cards>
         <LoadMore limit={() => setLimit(limit + 10)} />
       </Pokedex>
       <Footer />
-    </>
+    </main>
   );
 };
 
