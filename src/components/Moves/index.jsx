@@ -1,16 +1,10 @@
 import styled from "styled-components";
 
-const Moves = () => {
+const Moves = ({ children }) => {
   return (
     <StyledMoves>
       <h3>Moves</h3>
-      <Container>
-        <Move>dash</Move>
-        <Move>dash</Move>
-        <Move>dash</Move>
-        <Move>dsadsadsadsadsa</Move>
-        <Move>dsadsadsads</Move>
-      </Container>
+      <Container>{children}</Container>
     </StyledMoves>
   );
 };
@@ -21,8 +15,7 @@ const StyledMoves = styled.div`
   border: 4px solid ${({ theme }) => theme.colors.primaryColorLight};
   padding: 19px 12px 23px;
   grid-column: 1/3;
-  /* overflow-y: scroll; */
-  min-height: 360px;
+  overflow-y: scroll;
 
   > h3 {
     text-align: center;
@@ -31,19 +24,24 @@ const StyledMoves = styled.div`
     border: 3px solid ${({ theme }) => theme.colors.primaryColorLight};
     padding-block: 10px;
   }
+
+  &::-webkit-scrollbar {
+    background: ${({ theme }) => theme.colors.primaryColor};
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.tertiaryColor};
+    border-radius: ${({ theme }) => theme.radius.default};
+  }
 `;
 
-const Container = styled.div`
+const Container = styled.ul`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 1.8rem;
   gap: 2rem;
 `;
 
-const Move = styled.p`
-  color: ${({ theme }) => theme.colors.primaryColor};
-  background: ${({ theme }) => theme.colors.primaryColorLight};
-  border-radius: ${({ theme }) => theme.radius.default};
-  padding: 1.1rem 1.8rem;
-`;
 export { Moves };

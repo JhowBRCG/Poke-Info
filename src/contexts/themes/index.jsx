@@ -8,11 +8,8 @@ const lightTheme = {
     secondaryColorLight: "rgba(255, 255, 255, 0.52)",
     tertiaryColor: "#FFA096",
     neagativeColor: "#000",
-  },
-
-  images: {
-    hero: "./src/assets/img/bg-hero-day.png",
-    pokedex: "./src/assets/img/bg-cards-day.png",
+    footerColorBg: "#ECF0F1",
+    footerColor: "#E74C3C",
   },
 
   fonts: {
@@ -32,11 +29,8 @@ const darkTheme = {
     secondaryColorLight: "rgba(255, 255, 255, 0.52)",
     tertiaryColor: "#FFA096",
     neagativeColor: "#000",
-  },
-
-  images: {
-    hero: "./src/assets/img/bg-hero-night.png",
-    pokedex: "./src/assets/img/bg-cards-night.png",
+    footerColorBg: "#0001D1",
+    footerColor: "#ECF0F1",
   },
 
   fonts: {

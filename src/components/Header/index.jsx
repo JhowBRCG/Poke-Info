@@ -2,10 +2,16 @@ import { styled } from "styled-components";
 import { Title } from "../Title";
 import { ToggleButton } from "../ToggleButton";
 import { Form } from "../Form";
+import { useContext } from "react";
+import BgHeroDay from "../../assets/img/bg-hero-day.png";
+import { ThemeState } from "../../contexts/themes";
+import BgHeroNight from "../../assets/img/bg-hero-night.png";
 
 const Header = () => {
+  const { theme } = useContext(ThemeState);
+
   return (
-    <StyledHeader>
+    <StyledHeader theme={theme}>
       <ToggleButton />
       <Title />
       <Form />
@@ -15,7 +21,7 @@ const Header = () => {
 
 const StyledHeader = styled.header`
   height: 50vh;
-  background-image: url(${({ theme }) => theme.images.hero});
+  background-image: url(${({ theme }) => theme === "light" ? BgHeroDay : BgHeroNight});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;

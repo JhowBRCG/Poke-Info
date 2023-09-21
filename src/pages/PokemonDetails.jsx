@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Abilities } from "../components/Abilities";
 import { Ability } from "../components/Ability";
+import { Move } from "../components/Move";
 
 const getPokemon = async (pokemonName) => {
   const response = await fetch(
@@ -44,6 +45,8 @@ const PokemonDetails = () => {
     fetchPokemon(name);
   }, []);
 
+  console.log(pokemon);
+
   return (
     <Main>
       <BackArrowButton />
@@ -70,7 +73,11 @@ const PokemonDetails = () => {
         })}
       </Abilities>
 
-      <Moves />
+      <Moves>
+        {pokemon?.moves.map((move, index) => {
+          return <Move key={index} move={move.move.name} />;
+        })}
+      </Moves>
     </Main>
   );
 };
@@ -79,7 +86,7 @@ const Main = styled.main`
   display: grid;
   place-content: center;
   grid-template-columns: 260px 50%;
-  grid-template-rows: 360px;
+  grid-template-rows: 360px 360px;
   background: ${({ theme }) => theme.colors.secondaryColor};
   min-height: 100vh;
   gap: 3rem;

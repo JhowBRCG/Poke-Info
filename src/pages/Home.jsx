@@ -16,28 +16,31 @@ const getPokemonData = async (url) => {
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
   const [limit, setLimit] = useState(10);
+  const [isLoading, setIsLoading ] = useState(true);
 
   const pokemonsInfo = async () => {
+    setIsLoading(true)
     const data = await getPokemons(limit);
     const promises = data.results.map(async (pokemon) => {
       return await getPokemonData(pokemon.url);
     });
-
+ 
     const results = await Promise.all(promises);
     setPokemons(results);
+    setIsLoading(false)
   };
 
   useEffect(() => {
     pokemonsInfo();
+    
   }, [limit]);
+
+  console.log(pokemons);
 
   return (
     <main>
       <Header />
       <Pokedex>
-        {pokemons.length === 0 && (
-          <p style={{ textAlign: "center" }}>Loading...</p>
-        )}
         <Cards>
           {pokemons.map((data) => {
             return (
@@ -51,6 +54,7 @@ const Home = () => {
             );
           })}
         </Cards>
+        {isLoading && <p style={{ textAlign: "center", marginTop: "5rem" }}>Loading...</p>}
         <LoadMore limit={() => setLimit(limit + 10)} />
       </Pokedex>
       <Footer />

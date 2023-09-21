@@ -9,12 +9,12 @@ const Footer = () => {
 };
 
 const StyledFooter = styled.footer`
-  background-color: ${({ theme }) => theme.colors.secondaryColor};
+  background-color: ${({ theme }) => theme.colors.footerColorBg};
   text-align: center;
   padding-block: 2.6rem;
 
   p {
-    color: ${({ theme }) => theme.colors.primaryColor};
+    color: ${({ theme }) => theme.colors.footerColor};
   }
 `;
 
