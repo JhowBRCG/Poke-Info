@@ -1,31 +1,19 @@
-import { Header } from "../components/Header";
-import { Pokedex } from "../components/Pokedex";
-import { Card } from "../components/Card";
+import {Header , Pokedex, Card, Footer, BackArrowButton } from '../components';
 import { Cards } from "./Home";
-import { Footer } from "../components/Footer";
 import { Link, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { getPokemon } from '../services/getPokemon';
 
-import { Loading } from "../components/Loading";
-import { BackArrowButton } from "../components/BackArrowButton";
-
-const getPokemon = async (pokemonName) => {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
-  );
-  return await response.json();
-
-};
 
 const Search = () => {
   const [searchParams] = useSearchParams();
   const [pokemon, setPokemon] = useState([]);
   const [isloading, setIsLoading] = useState(true);
-  
+
   const query = searchParams.get("q");
-  
+
   const pokemonSearch = async (pokemonName) => {
-    setIsLoading(true)
+    setIsLoading(true);
     const data = await getPokemon(pokemonName);
     setPokemon(data);
     setIsLoading(false);
@@ -35,17 +23,13 @@ const Search = () => {
     pokemonSearch(query);
   }, [query]);
 
-  console.log(query !== pokemon.name || pokemon.id, "eu");
-
-  
-    
   return (
     <main>
       <Header />
       <BackArrowButton />
       <Pokedex>
         <Cards>
-          {!isloading  &&
+          {!isloading && (
             <Link to={`/details/${pokemon.name}`}>
               <Card
                 name={pokemon.name}
@@ -53,7 +37,7 @@ const Search = () => {
                 types={pokemon.types.map((pokemon) => pokemon.type.name)}
               />
             </Link>
-          }
+          )}
         </Cards>
       </Pokedex>
       <Footer />

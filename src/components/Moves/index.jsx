@@ -16,6 +16,7 @@ const StyledMoves = styled.div`
   padding: 19px 12px 23px;
   grid-column: 1/3;
   overflow-y: scroll;
+  height: 360px;
 
   > h3 {
     text-align: center;

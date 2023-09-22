@@ -1,10 +1,8 @@
 import { styled } from "styled-components";
-import { Title } from "../Title";
-import { ToggleButton } from "../ToggleButton";
-import { Form } from "../Form";
+import { Title, ToggleButton, Form } from '../../components';
 import { useContext } from "react";
-import BgHeroDay from "../../assets/img/bg-hero-day.png";
 import { ThemeState } from "../../contexts/themes";
+import BgHeroDay from "../../assets/img/bg-hero-day.png";
 import BgHeroNight from "../../assets/img/bg-hero-night.png";
 
 const Header = () => {
@@ -26,13 +24,23 @@ const StyledHeader = styled.header`
   background-size: cover;
   background-position: center bottom;
   padding-top: 6rem;
+  position: relative;
+
+  @media screen and (max-width: 425px) {
+    padding-top: 8rem;
+    padding-inline: 1rem;
+  }
 
   > button {
     top: 10px;
     right: 10px;
     position: absolute;
     display: block;
-    margin-left: auto;
+
+    @media screen and (max-width: 425px) {
+      right: 50%;
+      transform: translate(50%);
+    }
   }
 
   h1 {

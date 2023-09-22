@@ -8,8 +8,12 @@ const lightTheme = {
     secondaryColorLight: "rgba(255, 255, 255, 0.52)",
     tertiaryColor: "#FFA096",
     neagativeColor: "#000",
+
     footerColorBg: "#ECF0F1",
     footerColor: "#E74C3C",
+
+    pokemonDetailsBg: "#ECF0F1",
+    pokemonDetailsColor: "#000",
   },
 
   fonts: {
@@ -29,8 +33,12 @@ const darkTheme = {
     secondaryColorLight: "rgba(255, 255, 255, 0.52)",
     tertiaryColor: "#FFA096",
     neagativeColor: "#000",
+
     footerColorBg: "#0001D1",
     footerColor: "#ECF0F1",
+
+    pokemonDetailsBg: "#1d1d44",
+    pokemonDetailsColor: "#ECF0F1",
   },
 
   fonts: {

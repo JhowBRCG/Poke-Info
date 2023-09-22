@@ -1,19 +1,9 @@
 import styled from "styled-components";
-import { BackArrowButton } from "../components/BackArrowButton";
-import { Card } from "../components/Card";
-import { Moves } from "../components/Moves";
+import { BackArrowButton, Card, Moves, Move, Abilities, Ability, LoadingPage } from '../components';
+import { getPokemon } from "../services/getPokemon";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Abilities } from "../components/Abilities";
-import { Ability } from "../components/Ability";
-import { Move } from "../components/Move";
 
-const getPokemon = async (pokemonName) => {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
-  );
-  return await response.json();
-};
 
 const getAbilities = async (url) => {
   const response = await fetch(url);
@@ -35,22 +25,20 @@ const PokemonDetails = () => {
     });
 
     const result = await Promise.all(promises);
-
     setPokemon(data);
     setAbilities(result);
-    // setIsLoading(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchPokemon(name);
   }, []);
 
-  console.log(pokemon);
-
   return (
     <Main>
+      {isloading && <LoadingPage />}
       <BackArrowButton />
-      {pokemon !== undefined && (
+      {!isloading && (
         <Card
           name={pokemon.name}
           image={pokemon.sprites.front_default}
@@ -72,7 +60,6 @@ const PokemonDetails = () => {
           );
         })}
       </Abilities>
-
       <Moves>
         {pokemon?.moves.map((move, index) => {
           return <Move key={index} move={move.move.name} />;
@@ -87,9 +74,17 @@ const Main = styled.main`
   place-content: center;
   grid-template-columns: 260px 50%;
   grid-template-rows: 360px 360px;
-  background: ${({ theme }) => theme.colors.secondaryColor};
+  background: ${({ theme }) => theme.colors.pokemonDetailsBg};
   min-height: 100vh;
   gap: 3rem;
+
+  @media screen and (max-width: 425px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 6rem 1rem 1rem 1rem;
+  }
 `;
 
 export { PokemonDetails };
