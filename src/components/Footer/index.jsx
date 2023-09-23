@@ -1,9 +1,15 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <p>Created by Jhowbrcg</p>
+      <p>
+        Created by{" "}
+        <Link to="https://github.com/JhowBRCG" target="no_blank">
+          Jhowbrcg
+        </Link>
+      </p>
     </StyledFooter>
   );
 };
@@ -15,6 +21,10 @@ const StyledFooter = styled.footer`
 
   p {
     color: ${({ theme }) => theme.colors.footerColor};
+
+    > a {
+      color: ${({ theme }) => theme.colors.negativeColor};
+    }
   }
 `;
 
