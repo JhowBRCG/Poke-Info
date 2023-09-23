@@ -7,7 +7,7 @@ const lightTheme = {
     secondaryColor: "#ECF0F1",
     secondaryColorLight: "rgba(255, 255, 255, 0.52)",
     tertiaryColor: "#FFA096",
-    neagativeColor: "#000",
+    negativeColor: "#000",
 
     footerColorBg: "#ECF0F1",
     footerColor: "#E74C3C",
@@ -32,7 +32,7 @@ const darkTheme = {
     secondaryColor: "#ECF0F1",
     secondaryColorLight: "rgba(255, 255, 255, 0.52)",
     tertiaryColor: "#FFA096",
-    neagativeColor: "#000",
+    negativeColor: "#000",
 
     footerColorBg: "#0001D1",
     footerColor: "#ECF0F1",

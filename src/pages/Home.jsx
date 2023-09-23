@@ -14,7 +14,7 @@ const Home = () => {
   const [limit, setLimit] = useState(10);
   const [isLoading, setIsLoading] = useState(true);
 
-  const pokemonsInfo = async () => {
+  const fetchPokemons = async () => {
     setIsLoading(true);
     const data = await getPokemons(limit);
     const promises = data.results.map(async (pokemon) => {
@@ -27,7 +27,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    pokemonsInfo();
+    fetchPokemons();
   }, [limit]);
 
 

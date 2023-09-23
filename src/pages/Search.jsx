@@ -12,7 +12,7 @@ const Search = () => {
 
   const query = searchParams.get("q");
 
-  const pokemonSearch = async (pokemonName) => {
+  const fetchPokemon = async (pokemonName) => {
     setIsLoading(true);
     const data = await getPokemon(pokemonName);
     setPokemon(data);
@@ -20,7 +20,7 @@ const Search = () => {
   };
 
   useEffect(() => {
-    pokemonSearch(query);
+    fetchPokemon(query);
   }, [query]);
 
   return (
