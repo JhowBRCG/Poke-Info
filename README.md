@@ -1,4 +1,6 @@
-# PokeInfo
+<h1 align = "center">PokeInfo</h1>
+
+<img src='src\assets\github\home-day.png'>
 
 ## Table of Contents
 
