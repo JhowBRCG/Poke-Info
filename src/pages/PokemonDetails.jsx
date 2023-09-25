@@ -16,7 +16,6 @@ const getAbilities = async (url) => {
 
 const PokemonDetails = () => {
   const { theme } = useContext(ThemeState);
-  console.log(theme);
 
   const [pokemon, setPokemon] = useState();
   const [abilities, setAbilities] = useState();
