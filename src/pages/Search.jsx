@@ -1,9 +1,8 @@
-import {Header , Pokedex, Card, Footer, BackArrowButton } from '../components';
+import { Header, Pokedex, Card, Footer, BackArrowButton } from "../components";
 import { Cards } from "./Home";
 import { Link, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getPokemon } from '../services/getPokemon';
-
+import { getPokemon } from "../services/getPokemon";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
@@ -13,10 +12,15 @@ const Search = () => {
   const query = searchParams.get("q");
 
   const fetchPokemon = async (pokemonName) => {
-    setIsLoading(true);
-    const data = await getPokemon(pokemonName);
-    setPokemon(data);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const data = await getPokemon(pokemonName);
+      setPokemon(data);
+    } catch (err) {
+      setPokemon(null);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -29,7 +33,8 @@ const Search = () => {
       <BackArrowButton />
       <Pokedex>
         <Cards>
-          {!isloading && (
+          {isloading && <p>loading...</p>}
+          {pokemon && !isloading && (
             <Link to={`/details/${pokemon.name}`}>
               <Card
                 name={pokemon.name}
@@ -38,6 +43,7 @@ const Search = () => {
               />
             </Link>
           )}
+          {!pokemon && !isloading && <p>Pokemon not found</p>}
         </Cards>
       </Pokedex>
       <Footer />
