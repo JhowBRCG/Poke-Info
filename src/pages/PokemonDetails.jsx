@@ -3,6 +3,10 @@ import { BackArrowButton, Card, Moves, Move, Abilities, Ability, LoadingPage } f
 import { getPokemon } from "../services/getPokemon";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { ThemeState } from "../contexts/themes";
+import { useContext } from "react";
+import BgHeroDay from "../assets/img/bg-hero-day.png";
+import BgHeroNight from "../assets/img/bg-hero-night.png";
 
 
 const getAbilities = async (url) => {
@@ -11,6 +15,9 @@ const getAbilities = async (url) => {
 };
 
 const PokemonDetails = () => {
+  const { theme } = useContext(ThemeState);
+  console.log(theme);
+
   const [pokemon, setPokemon] = useState();
   const [abilities, setAbilities] = useState();
   const [isloading, setIsLoading] = useState(true);
@@ -35,7 +42,7 @@ const PokemonDetails = () => {
   }, []);
 
   return (
-    <Main>
+    <Main theme={theme}>
       {isloading && <LoadingPage />}
       <BackArrowButton />
       {!isloading && (
@@ -74,7 +81,8 @@ const Main = styled.main`
   place-content: center;
   grid-template-columns: 260px 50%;
   grid-template-rows: 360px 360px;
-  background: ${({ theme }) => theme.colors.pokemonDetailsBg};
+  background: url(${({ theme }) => theme === "light" ? BgHeroDay : BgHeroNight}) no-repeat bottom center;
+  background-size: cover;
   min-height: 100vh;
   gap: 3rem;
 

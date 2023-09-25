@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <StyledFooter>
       <p>
-        ©Created by{" "}
+        © Created by{" "}
         <Link to="https://github.com/JhowBRCG" target="no_blank">
           Jhowbrcg
         </Link>
