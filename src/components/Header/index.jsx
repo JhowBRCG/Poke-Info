@@ -38,8 +38,10 @@ const StyledHeader = styled.header`
     display: block;
 
     @media screen and (max-width: 425px) {
-      right: 50%;
-      transform: translate(50%);
+      inset: 0;
+      width: fit-content;
+      height: fit-content;
+      margin: 10px auto auto auto;
     }
   }
 
