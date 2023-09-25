@@ -93,6 +93,8 @@ To run the application on your machine, follow the next steps:
 When working on this project, I learned a lot of new things,mainly about **React** itself and how the components work, like
 passing states between them by using the **ContextAPI**, which React provides natively. Beyond React, I also learned a lot about styling by using the **StyledComponents**, which helped me a lot to styling the entire application and switch themes. I can't forget about the **ReactRouter** which was extremely important for this project. Using it, I improved myself a lot in how to create routes dynamically for a better user experience.
 
+[See the demo](https://pokeinfo-react.netlify.app/)
+
 ## Author
 
 Created by [@jhowbrcg](https://github.com/JhowBRCG) - fell free to contact me!
