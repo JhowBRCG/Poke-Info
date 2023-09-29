@@ -17,7 +17,8 @@ const Section = styled.section`
       rgba(37, 3, 29, 0)
     ),
     url(${({ theme }) => theme === "light" ? CardsDay : CardsNight});
-  background-position: center center;
+  background-position: center 40%;
+  background-attachment: fixed;
   padding: 10rem 0;
   min-height: calc(50vh - 68px);
 
